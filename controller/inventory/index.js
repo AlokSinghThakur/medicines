@@ -22,6 +22,15 @@ module.exports = {
 
             if (!medicine_id)
             return res.status(422).send({ code: 422, status: "failed", msg: "Email is required" });
+
+            let data = {
+                title:title,
+                medicine_id:medicine_id,
+                amount:amount,
+                status:status
+            }
+
+            let inventoryExist = await inventoryQueries.getInventoryById(medicine_id)
       
 
         }catch (err) {
