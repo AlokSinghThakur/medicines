@@ -2,6 +2,7 @@ const { Sequelize } = require('sequelize');
 
 const medicineModel = require('./medicine')
 const inventoryModel = require('./inventory')
+const userModel = require('./users')
 
 exports.db_config = new Sequelize(
   'medical',
@@ -29,4 +30,5 @@ exports.db_config = new Sequelize(
   
 
 exports.medicineModel = medicineModel(exports.db_config);
-exports.inventoryModel = inventoryModel(exports.db_config)
+exports.inventoryModel = inventoryModel(exports.db_config);
+exports.userModel = userModel(exports.db_config)
