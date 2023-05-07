@@ -4,7 +4,7 @@ const inventoryQueries = require('../../queries/inventory')
 module.exports = {
     async getInventory(req,res){
         try{
-            let inventoryData = await inventoryQueries.getInventory();
+            let inventoryData = await inventoryQueries.getInventoryData();
             return res
             .status(200)
             .send({ code: 200, status: "success", data: inventoryData });
@@ -63,7 +63,7 @@ module.exports = {
     
     async updateInventory(req,res){
         let inventoryId = req.body.id;
-        let data = rwq.body
+        let data = req.body
 
         if (!inventoryId) res.status(422).send({ code: 422, status: 'failed', msg: 'Data is required' });
 
@@ -75,7 +75,7 @@ module.exports = {
 
         await inventoryQueries.updateInventoryData(inventoryId, data)
         let MedicineList = await inventoryQueries.getInventoryDataById(inventoryId)
-        return res.status(200).send({ code: 200, status: 'success', msg: "feedback added successfully", data: MedicineList });
+        return res.status(200).send({ code: 200, status: 'success', msg: "Inventory Added Successfully", data: MedicineList });
         }catch (err) {
             return res.status(422).send({ code: 422, status: "failed", msg: err.message });
           }

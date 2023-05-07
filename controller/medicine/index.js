@@ -72,7 +72,7 @@ module.exports = {
   },
 
   async updateMedicine(req, res) {
-    let medicineId = req.query.medicineId;
+    let medicineId = req.body.medicineId;
     let data = req.body;
 
     if (!medicineId)
@@ -84,20 +84,19 @@ module.exports = {
       }
 
       await medicineQueries.updateMedicineData( medicineId,data );
-      let MedicineList = await medicineQueries.getFeedback(medicineId);
+      let MedicineList = await medicineQueries.getMedicineDataById(medicineId);
       return res.status(200).send({code: 200,status: "success",msg: "feedback added successfully",data: MedicineList, });
     } catch (err) {
       return res.status(422).send({ code: 422, status: "failed", msg: err.message });
     }
   },
   async deleteMedicine(req, res) {
-    let id = req.body.id;
-    if (!id) return res.status(422).send({ code: 422, status: 'failed', msg: 'Data is required' })
+    let medicineId = req.body.medicineId;
+    if (!medicineId) return res.status(422).send({ code: 422, status: 'failed', msg: 'Data is required' })
        
     try {
-      await medicineQueries.deleteMedicine(id)
-      return res.status(200).send({code: 200,status: "success",msg: "medicine deleted successfully",
-      });
+      await medicineQueries.deleteMedicine(medicineId)
+      return res.status(200).send({code: 200,status: "success",msg: "medicine deleted successfully"});
     } catch (err) {
       return res.status(422).send({ code: 422, status: "failed", msg: err.message });
     }
