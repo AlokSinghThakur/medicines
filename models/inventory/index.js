@@ -25,6 +25,15 @@ module.exports = (db_config) => {
                 type: DataTypes.STRING,
                 allowNull: true
             },
+            is_inventory :{
+                type: DataTypes.BOOLEAN,
+                allowNull: true,
+                defaultValue : true
+            },
+            deleted_at: {
+                type: DataTypes.DATE,
+                defaultValue: null
+            },
     });
 
     return inventories;

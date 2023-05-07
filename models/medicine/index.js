@@ -12,7 +12,6 @@ module.exports = (db_config) => {
             code:{
                 type: DataTypes.STRING,
                 allowNull:false,
-
             },
             title: {
                 type: DataTypes.STRING,
@@ -33,6 +32,15 @@ module.exports = (db_config) => {
             is_available: {
                 type: DataTypes.BOOLEAN,
                 defaultValue: false
+            },
+            is_medicine :{
+                type: DataTypes.BOOLEAN,
+                allowNull: true,
+                defaultValue : true
+            },
+            deleted_at: {
+                type: DataTypes.DATE,
+                defaultValue: null
             },
     });
 

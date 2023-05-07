@@ -14,7 +14,7 @@ app.use('/inventory', INVENTORY_ROUTES)
 
 models.db_config
     .sync({
-        //    force: true,
+        // force: true,
         // alter: true,
     })
     .then(() => {
